@@ -26,6 +26,8 @@
 
 * `ProjectedCRS::identify()`: do not return CRS whose ellipsoid is totally different from the input one (#4635)
 
+* `projinfo` added as a library function. This installs a new header: `projapps_lib.h`. (#4646)
+
 * respect `CRS_EXTENT_USE=NONE` for ConcatenatedOperations (#4652)
 
 * Add support for  Equidistant Cylindrical ellipsoidal method (EPSG:1028) (#4656)
