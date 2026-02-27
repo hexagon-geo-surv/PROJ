@@ -7899,7 +7899,7 @@ TEST(operation, compoundCRS_to_geogCRS_2D_promote_to_3D_context) {
                                                                ctxt);
     // The checked value is not that important, but in case this changes,
     // likely due to a EPSG upgrade, worth checking
-    EXPECT_EQ(listCompoundToGeog2D.size(), 122U);
+    EXPECT_EQ(listCompoundToGeog2D.size(), 133U);
 
     auto listGeog2DToCompound =
         CoordinateOperationFactory::create()->createOperations(dst, nnSrc,
