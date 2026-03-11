@@ -3975,6 +3975,20 @@ static bool useOnlyIntermediateCRSThroughDatumEnsembleNullOp(
 
 // ---------------------------------------------------------------------------
 
+/** Returns true if all operations are replaced by another one.
+ */
+static bool
+useOnlyReplacedOperations(const std::vector<CoordinateOperationNNPtr> &ops) {
+    for (const auto &op : ops) {
+        if (op->remarks().find("Replaced by") == std::string::npos) {
+            return false;
+        }
+    }
+    return true;
+}
+
+// ---------------------------------------------------------------------------
+
 bool CoordinateOperationFactory::Private::createOperationsFromDatabase(
     const crs::CRSNNPtr &sourceCRS,
     const util::optional<common::DataEpoch> &sourceEpoch,
@@ -4193,11 +4207,14 @@ bool CoordinateOperationFactory::Private::createOperationsFromDatabase(
         doFilterAndCheckPerfectOp = !res.empty();
     }
 
-    if (!context.inCreateOperationsWithDatumPivotAntiRecursion &&
-        !resFindDirectNonEmptyBeforeFiltering && geodSrc && geodDst &&
-        !sameGeodeticDatum && context.context->getIntermediateCRS().empty() &&
+    bool bUseOnlyReplacedOperations = false;
+    if (!context.inCreateOperationsWithDatumPivotAntiRecursion && geodSrc &&
+        geodDst && !sameGeodeticDatum &&
+        context.context->getIntermediateCRS().empty() &&
         context.context->getAllowUseIntermediateCRS() !=
-            CoordinateOperationContext::IntermediateCRSUse::NEVER) {
+            CoordinateOperationContext::IntermediateCRSUse::NEVER &&
+        (!resFindDirectNonEmptyBeforeFiltering ||
+         (bUseOnlyReplacedOperations = useOnlyReplacedOperations(res)))) {
         const bool tooSmallAreas = hasTooSmallAreas(res, context);
         const auto allRequiresPerCoordinateInputTime = [&res]() {
             for (const auto &op : res) {
@@ -4207,7 +4224,7 @@ bool CoordinateOperationFactory::Private::createOperationsFromDatabase(
             return true;
         };
 
-        if (res.empty() || tooSmallAreas ||
+        if (res.empty() || bUseOnlyReplacedOperations || tooSmallAreas ||
             // If all coordinate operations are time-dependent and none of the
             // source or target CRS are dynamic, try through an intermediate CRS
             // (we go here between ETRS89 and ETRS89-NO that would otherwise
