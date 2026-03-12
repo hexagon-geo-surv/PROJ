@@ -12164,20 +12164,39 @@ TEST(operation, createOperation_ETRF2000_to_Amersfoort) {
     ctxt->setGridAvailabilityUse(
         CoordinateOperationContext::GridAvailabilityUse::
             IGNORE_GRID_AVAILABILITY);
-    auto list = CoordinateOperationFactory::create()->createOperations(
-        // ETRF2000
-        authFactoryEPSG->createCoordinateReferenceSystem("9067"),
-        // Amersfoort
-        authFactoryEPSG->createCoordinateReferenceSystem("4289"), ctxt);
-    ASSERT_GE(list.size(), 1U);
-    // We check that we go through ETRS89-NLD [AGRS2010] to use the most
-    // precise "Amersfoort to ETRS89-NLD [AGRS2010] (9)" operation.
-    EXPECT_EQ(list[0]->nameStr(),
-              "Conversion from ETRF2000 (geog2D) to ETRF2000 (geocentric) + "
-              "Inverse of ETRS89-NLD [AGRS2010] to ETRF2000 (1) + "
-              "Conversion from ETRS89-NLD [AGRS2010] (geocentric) to "
-              "ETRS89-NLD [AGRS2010] (geog2D) + "
-              "Inverse of Amersfoort to ETRS89-NLD [AGRS2010] (9)");
+    {
+        auto list = CoordinateOperationFactory::create()->createOperations(
+            // ETRF2000
+            authFactoryEPSG->createCoordinateReferenceSystem("9067"),
+            // Amersfoort
+            authFactoryEPSG->createCoordinateReferenceSystem("4289"), ctxt);
+        ASSERT_GE(list.size(), 1U);
+        // We check that we go through ETRS89-NLD [AGRS2010] to use the most
+        // precise "Amersfoort to ETRS89-NLD [AGRS2010] (9)" operation.
+        EXPECT_EQ(
+            list[0]->nameStr(),
+            "Conversion from ETRF2000 (geog2D) to ETRF2000 (geocentric) + "
+            "Inverse of ETRS89-NLD [AGRS2010] to ETRF2000 (1) + "
+            "Conversion from ETRS89-NLD [AGRS2010] (geocentric) to "
+            "ETRS89-NLD [AGRS2010] (geog2D) + "
+            "Inverse of Amersfoort to ETRS89-NLD [AGRS2010] (9)");
+    }
+    {
+        auto list = CoordinateOperationFactory::create()->createOperations(
+            // Amersfoort
+            authFactoryEPSG->createCoordinateReferenceSystem("4289"),
+            // ETRF2000
+            authFactoryEPSG->createCoordinateReferenceSystem("9067"), ctxt);
+        ASSERT_GE(list.size(), 1U);
+        // We check that we go through ETRS89-NLD [AGRS2010] to use the most
+        // precise "Amersfoort to ETRS89-NLD [AGRS2010] (9)" operation.
+        EXPECT_EQ(list[0]->nameStr(),
+                  "Amersfoort to ETRS89-NLD [AGRS2010] (9) + "
+                  "Conversion from ETRS89-NLD [AGRS2010] (geog2D) to "
+                  "ETRS89-NLD [AGRS2010] (geocentric) + "
+                  "ETRS89-NLD [AGRS2010] to ETRF2000 (1) + "
+                  "Conversion from ETRF2000 (geocentric) to ETRF2000 (geog2D)");
+    }
 }
 
 // ---------------------------------------------------------------------------
@@ -12192,15 +12211,30 @@ TEST(operation, createOperation_ETRS89_to_Amersfoort) {
     ctxt->setGridAvailabilityUse(
         CoordinateOperationContext::GridAvailabilityUse::
             IGNORE_GRID_AVAILABILITY);
-    auto list = CoordinateOperationFactory::create()->createOperations(
-        // ETRS89
-        authFactoryEPSG->createCoordinateReferenceSystem("4258"),
-        // Amersfoort
-        authFactoryEPSG->createCoordinateReferenceSystem("4289"), ctxt);
-    ASSERT_GE(list.size(), 1U);
-    // We check that we go through ETRS89-NLD [AGRS2010] to use the most
-    // precise "Amersfoort to ETRS89-NLD [AGRS2010] (9)" operation.
-    EXPECT_EQ(list[0]->nameStr(),
-              "ETRS89 to ETRS89-NLD [AGRS2010] + "
-              "Inverse of Amersfoort to ETRS89-NLD [AGRS2010] (9)");
+    {
+        auto list = CoordinateOperationFactory::create()->createOperations(
+            // ETRS89
+            authFactoryEPSG->createCoordinateReferenceSystem("4258"),
+            // Amersfoort
+            authFactoryEPSG->createCoordinateReferenceSystem("4289"), ctxt);
+        ASSERT_GE(list.size(), 1U);
+        // We check that we go through ETRS89-NLD [AGRS2010] to use the most
+        // precise "Amersfoort to ETRS89-NLD [AGRS2010] (9)" operation.
+        EXPECT_EQ(list[0]->nameStr(),
+                  "ETRS89 to ETRS89-NLD [AGRS2010] + "
+                  "Inverse of Amersfoort to ETRS89-NLD [AGRS2010] (9)");
+    }
+    {
+        auto list = CoordinateOperationFactory::create()->createOperations(
+            // Amersfoort
+            authFactoryEPSG->createCoordinateReferenceSystem("4289"),
+            // ETRS89
+            authFactoryEPSG->createCoordinateReferenceSystem("4258"), ctxt);
+        ASSERT_GE(list.size(), 1U);
+        // We check that we go through ETRS89-NLD [AGRS2010] to use the most
+        // precise "Amersfoort to ETRS89-NLD [AGRS2010] (9)" operation.
+        EXPECT_EQ(list[0]->nameStr(),
+                  "Amersfoort to ETRS89-NLD [AGRS2010] (9) + "
+                  "Inverse of ETRS89 to ETRS89-NLD [AGRS2010]");
+    }
 }
