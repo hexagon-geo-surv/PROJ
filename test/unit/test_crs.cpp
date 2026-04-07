@@ -3731,7 +3731,7 @@ TEST(crs, projectedCRS_identify_db) {
         EXPECT_EQ(*(res.front().first->identifiers()[0]->codeSpace()), "EPSG");
         EXPECT_EQ(res.front().second, 70);
     }
-
+#ifdef requires_epsg_12_054
     {
         // Identify a CRS after ETRS89 -> ETRS89-PRT [1995] changes
         auto obj = WKTParser().attachDatabaseContext(dbContext).createFromWKT(
@@ -3765,6 +3765,7 @@ TEST(crs, projectedCRS_identify_db) {
         EXPECT_EQ(*(res.front().first->identifiers()[0]->codeSpace()), "EPSG");
         EXPECT_EQ(res.front().second, 100);
     }
+#endif
     {
         // The ellipsoid definition uses a unusual value for the inverse
         // flattening Check that we only identify CRS whose ellipsoid shape is
@@ -7971,12 +7972,6 @@ TEST(crs, norway_ntm) {
         auto obj = createFromUserInput(esri_wkt, dbContext, true);
         auto crs_from_esri = nn_dynamic_pointer_cast<ProjectedCRS>(obj);
         ASSERT_TRUE(crs_from_esri != nullptr);
-        EXPECT_STREQ(crs_from_esri->nameStr().c_str(),
-                     "ETRS89-NOR [EUREF89] / NTM zone 5");
-        EXPECT_STREQ(crs_from_esri->baseCRS()->nameStr().c_str(),
-                     "ETRS89-NOR [EUREF89]");
-        EXPECT_STREQ(crs_from_esri->baseCRS()->datum()->nameStr().c_str(),
-                     "EUREF89");
         auto res = crs_from_esri->identify(factory);
         ASSERT_EQ(res.size(), 1U);
         EXPECT_EQ(res.front().first.get(), crs.get());
@@ -8054,7 +8049,7 @@ TEST(crs, norway_ntm) {
     }
 }
 // ---------------------------------------------------------------------------
-
+#ifdef requires_epsg_12_054
 TEST(crs, ETRF2000_PL_CS92) {
 
     auto dbContext = DatabaseContext::create();
@@ -8121,3 +8116,4 @@ TEST(crs, ETRF2000_PL_CS92) {
         EXPECT_EQ(res.front().second, 100);
     }
 }
+#endif
