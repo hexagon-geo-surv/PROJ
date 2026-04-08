@@ -26,13 +26,13 @@ author = "PROJ contributors"
 version = "9.8"
 
 # The full project version, used as the replacement for |release|
-release = "9.8.0"
+release = "9.8.1"
 
 # PROJ-data version
 data_version = "1.24"
 
 #today_date = date.today() # or use a specific date
-today_date = date(2026, 3, 2)
+today_date = date(2026, 4, 8)
 today_fmt = "%d %b %Y"
 
 copyright = "1983-{}, PROJ contributors".format(today_date.year)

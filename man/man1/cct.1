@@ -1,4 +1,5 @@
-.\" Man page generated from reStructuredText.
+.\" Man page generated from reStructuredText
+.\" by the Docutils 0.22.4 manpage writer.
 .
 .
 .nr rst2man-indent-level 0
@@ -27,7 +28,7 @@ level margin: \\n[rst2man-indent\\n[rst2man-indent-level]]
 .\" new: \\n[rst2man-indent\\n[rst2man-indent-level]]
 .in \\n[rst2man-indent\\n[rst2man-indent-level]]u
 ..
-.TH "CCT" "1" "01 Mar 2026" "9.8" "PROJ"
+.TH "CCT" "1" "08 Apr 2026" "9.8" "PROJ"
 .SH NAME
 cct \- Coordinate Conversion and Transformation
 .SH SYNOPSIS
@@ -45,7 +46,7 @@ or
 .UNINDENT
 .sp
 Where {object_definition}\ is one of the possibilities accepted
-by \fI\%proj_create()\fP, provided it expresses a coordinate operation
+by \fBproj_create()\fP \%<#\:c\:.proj_create>, provided it expresses a coordinate operation
 .INDENT 0.0
 .INDENT 3.5
 .INDENT 0.0
@@ -60,19 +61,19 @@ an object name. e.g. \(dqITRF2014 to ETRF2014 (1)\(dq. In that case as
 uniqueness is not guaranteed, heuristics are applied to determine the appropriate best match.
 .IP \(bu 2
 a OGC URN combining references for concatenated operations
-(e.g. \(dq\fI\%urn:ogc:def:coordinateOperation,coordinateOperation:EPSG::3895,coordinateOperation:EPSG::1618\fP\(dq)
+(e.g. \(dq\%<urn:ogc:def:coordinateOperation,coordinateOperation:EPSG::3895,coordinateOperation:EPSG::1618>\(dq)
 .IP \(bu 2
-a PROJJSON string. The jsonschema is at \fI\%https://proj.org/schemas/v0.4/projjson.schema.json\fP
+a PROJJSON string. The jsonschema is at \%<https://\:proj\:.org/\:schemas/\:v0\:.4/\:projjson\:.schema\:.json>
 .UNINDENT
 .sp
-New in version 8.0.0.
+Added in version 8.0.0.
 
 .sp
-\fBNOTE:\fP
+\fBNote:\fP
 .INDENT 0.0
 .INDENT 3.5
 Before version 8.0.0 only proj\-strings could be used to instantiate
-operations in \fI\%cct\fP\&.
+operations in cct\&.
 .UNINDENT
 .UNINDENT
 .UNINDENT
@@ -90,18 +91,18 @@ file referenced by the {object_reference} must contain a valid
 {object_definition}.
 .INDENT 0.0
 .INDENT 3.5
-New in version 8.0.0.
+Added in version 8.0.0.
 
 .UNINDENT
 .UNINDENT
 .SH DESCRIPTION
 .sp
-\fI\%cct\fP is a 4D equivalent to the \fI\%proj\fP projection program,
+cct is a 4D equivalent to the proj \%<#\:proj> projection program,
 performs transformation coordinate systems on a set of input points. The
 coordinate system transformation can include translation between projected
 and geographic coordinates as well as the application of datum shifts.
 .sp
-Note however that unlike the \fI\%proj\fP, angular input must be in decimal degrees.
+Note however that unlike the proj \%<#\:proj>, angular input must be in decimal degrees.
 Any minutes and seconds given will be silently dropped.
 .sp
 The following control parameters can appear in any order:
@@ -113,7 +114,7 @@ Specify input columns for (up to) 4 input parameters. Defaults to 1,2,3,4.
 .INDENT 0.0
 .TP
 .B \-d <n>
-New in version 5.2.0.
+Added in version 5.2.0.
 
 .sp
 Specify the number of decimals to round to in the output.
@@ -141,7 +142,7 @@ Specify a fixed observation \fIheight\fP to be used for all input data.
 .INDENT 0.0
 .TP
 .B \-s <n>, \-\-skip\-lines=<n>
-New in version 5.1.0.
+Added in version 5.1.0.
 
 .sp
 Skip the first \fIn\fP lines of input. This applies to any kind of input, whether
@@ -162,7 +163,7 @@ Print version number.
 The \fI+opt\fP arguments are associated with coordinate operation parameters.
 Usage varies with operation.
 .sp
-\fI\%cct\fP is an acronym meaning \fICoordinate Conversion and Transformation\fP\&.
+cct is an acronym meaning \fICoordinate Conversion and Transformation\fP\&.
 .sp
 The acronym refers to definitions given in the OGC 08\-015r2/ISO\-19111
 standard \(dqGeographical Information \-\- Spatial Referencing by Coordinates\(dq,
@@ -176,28 +177,26 @@ cartesian coordinates) and
 input and output datums differ (e.g. change of reference frame).
 .SH USE OF REMOTE GRIDS
 .sp
-New in version 7.0.0.
+Added in version 7.0.0.
 
 .sp
-If the \fI\%PROJ_NETWORK\fP environment variable is set to \fBON\fP,
-\fI\%cct\fP will attempt to use remote grids stored on CDN (Content
+If the \fBPROJ_NETWORK\fP \%<#\:envvar-PROJ_NETWORK> environment variable is set to \fBON\fP,
+cct will attempt to use remote grids stored on CDN (Content
 Delivery Network) storage, when they are not available locally.
 .sp
-More details are available in the \fI\%Network capabilities\fP section.
+More details are available in the Network capabilities \%<#\:network> section.
 .SH EXAMPLES
 .INDENT 0.0
 .IP 1. 3
-The operator specs describe the action to be performed by \fI\%cct\fP\&. So
+The operator specs describe the action to be performed by cct\&. So
 the following script
 .UNINDENT
 .INDENT 0.0
 .INDENT 3.5
 .sp
-.nf
-.ft C
+.EX
 echo 12 55 0 0 | cct +proj=utm +zone=32 +ellps=GRS80
-.ft P
-.fi
+.EE
 .UNINDENT
 .UNINDENT
 .sp
@@ -206,23 +205,19 @@ Hence, the command
 .INDENT 0.0
 .INDENT 3.5
 .sp
-.nf
-.ft C
+.EX
 echo 12 55 | cct \-z0 \-t0 +proj=utm +zone=32 +ellps=GRS80
-.ft P
-.fi
+.EE
 .UNINDENT
 .UNINDENT
 .sp
-Should give results comparable to the classic \fI\%proj\fP command
+Should give results comparable to the classic proj \%<#\:proj> command
 .INDENT 0.0
 .INDENT 3.5
 .sp
-.nf
-.ft C
+.EX
 echo 12 55 | proj +proj=utm +zone=32 +ellps=GRS80
-.ft P
-.fi
+.EE
 .UNINDENT
 .UNINDENT
 .INDENT 0.0
@@ -232,11 +227,9 @@ Convert geographical input to UTM zone 32 on the GRS80 ellipsoid:
 .INDENT 0.0
 .INDENT 3.5
 .sp
-.nf
-.ft C
+.EX
 cct +proj=utm +ellps=GRS80 +zone=32
-.ft P
-.fi
+.EE
 .UNINDENT
 .UNINDENT
 .INDENT 0.0
@@ -246,11 +239,9 @@ Roundtrip accuracy check for the case above:
 .INDENT 0.0
 .INDENT 3.5
 .sp
-.nf
-.ft C
+.EX
 cct +proj=pipeline +ellps=GRS80 +zone=32 +step +proj=utm +step +proj=utm +inv
-.ft P
-.fi
+.EE
 .UNINDENT
 .UNINDENT
 .INDENT 0.0
@@ -260,11 +251,9 @@ As (2) but specify input columns for longitude, latitude, height and time:
 .INDENT 0.0
 .INDENT 3.5
 .sp
-.nf
-.ft C
+.EX
 cct \-c 5,2,1,4 +proj=utm +ellps=GRS80 +zone=32
-.ft P
-.fi
+.EE
 .UNINDENT
 .UNINDENT
 .INDENT 0.0
@@ -275,11 +264,9 @@ input:
 .INDENT 0.0
 .INDENT 3.5
 .sp
-.nf
-.ft C
+.EX
 cct \-t 0 \-z 0 +proj=utm +ellps=GRS80 +zone=32
-.ft P
-.fi
+.EE
 .UNINDENT
 .UNINDENT
 .INDENT 0.0
@@ -290,12 +277,10 @@ stream:
 .INDENT 0.0
 .INDENT 3.5
 .sp
-.nf
-.ft C
+.EX
 $ echo 12 56 100 2018.0 auxiliary data | cct +proj=merc
 1335833.8895   7522963.2411      100.0000     2018.0000 auxiliary data
-.ft P
-.fi
+.EE
 .UNINDENT
 .UNINDENT
 .INDENT 0.0
@@ -305,12 +290,10 @@ Coordinate operation referenced through its code
 .INDENT 0.0
 .INDENT 3.5
 .sp
-.nf
-.ft C
+.EX
 $ echo 3541657.3778 948984.2343 5201383.5231 2020.5 | cct EPSG:8366
 3541657.9112    948983.7503  5201383.2482     2020.5000
-.ft P
-.fi
+.EE
 .UNINDENT
 .UNINDENT
 .INDENT 0.0
@@ -320,17 +303,15 @@ Coordinate operation referenced through its name
 .INDENT 0.0
 .INDENT 3.5
 .sp
-.nf
-.ft C
+.EX
 $ echo 3541657.3778 948984.2343 5201383.5231 2020.5 | cct \(dqITRF2014 to ETRF2014 (1)\(dq
 3541657.9112    948983.7503  5201383.2482     2020.5000
-.ft P
-.fi
+.EE
 .UNINDENT
 .UNINDENT
 .SH BACKGROUND
 .sp
-\fI\%cct\fP also refers to Carl Christian Tscherning (1942\-\-2014),
+cct also refers to Carl Christian Tscherning (1942\-\-2014),
 professor of Geodesy at the University of Copenhagen, mentor and advisor
 for a generation of Danish geodesists, colleague and collaborator for
 two generations of global geodesists, Secretary General for the
@@ -351,20 +332,19 @@ modest Unix style transformation filter, hinting at the tireless aspect
 of his personality, which was certainly one of the reasons he accomplished
 so much, and meant so much to so many people.
 .sp
-Hence, in honour of \fIcct\fP (the geodesist) this is \fI\%cct\fP (the program).
+Hence, in honour of \fIcct\fP (the geodesist) this is cct (the program).
 .SH SEE ALSO
 .sp
 \fBproj(1)\fP, \fBcs2cs(1)\fP, \fBgeod(1)\fP, \fBgie(1)\fP, \fBprojinfo(1)\fP, \fBprojsync(1)\fP
 .SH BUGS
 .sp
-A list of known bugs can be found at \fI\%https://github.com/OSGeo/PROJ/issues\fP
+A list of known bugs can be found at \%<https://\:github\:.com/\:OSGeo/\:PROJ/\:issues>
 where new bug reports can be submitted to.
 .SH HOME PAGE
 .sp
-\fI\%https://proj.org/\fP
-.SH AUTHOR
+\%<https://\:proj\:.org/>
+.SH Author
 Thomas Knudsen
-.SH COPYRIGHT
+.SH Copyright
 1983-2026, PROJ contributors
-.\" Generated by docutils manpage writer.
-.
+.\" End of generated man page.
