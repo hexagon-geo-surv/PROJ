@@ -1,4 +1,5 @@
-.\" Man page generated from reStructuredText.
+.\" Man page generated from reStructuredText
+.\" by the Docutils 0.22.4 manpage writer.
 .
 .
 .nr rst2man-indent-level 0
@@ -27,7 +28,7 @@ level margin: \\n[rst2man-indent\\n[rst2man-indent-level]]
 .\" new: \\n[rst2man-indent\\n[rst2man-indent-level]]
 .in \\n[rst2man-indent\\n[rst2man-indent-level]]u
 ..
-.TH "PROJ" "1" "01 Mar 2026" "9.8" "PROJ"
+.TH "PROJ" "1" "08 Apr 2026" "9.8" "PROJ"
 .SH NAME
 proj \- Cartographic projection filter
 .SH SYNOPSIS
@@ -40,12 +41,12 @@ proj \- Cartographic projection filter
 .UNINDENT
 .SH DESCRIPTION
 .sp
-\fI\%proj\fP and \fI\%invproj\fP perform respective forward and inverse
+proj and invproj perform respective forward and inverse
 conversion of cartographic data to or from cartesian data with a wide
 range of selectable projection functions.
 .sp
-\fI\%invproj\fP may not be available on all platforms; in this case
-use \fI\%proj \-I\fP instead.
+invproj may not be available on all platforms; in this case
+use \fBproj \-I\fP instead.
 .sp
 The following control parameters can appear in any order
 .INDENT 0.0
@@ -53,7 +54,7 @@ The following control parameters can appear in any order
 .B \-b
 Special option for binary coordinate data input and output through standard
 input and standard output. Data is assumed to be in system type double
-floating point words. This option is to be used when \fI\%proj\fP is a child process
+floating point words. This option is to be used when proj is a child process
 and allows bypassing formatting operations.
 .UNINDENT
 .INDENT 0.0
@@ -61,23 +62,23 @@ and allows bypassing formatting operations.
 .B \-d <n>
 .UNINDENT
 .sp
-New in version 5.2.0: Specify the number of decimals to round to in the output.
+Added in version 5.2.0: Specify the number of decimals to round to in the output.
 
 .INDENT 0.0
 .TP
 .B \-i
-Selects binary input only (see \fI\%\-b\fP).
+Selects binary input only (see \fB\-b\fP).
 .UNINDENT
 .INDENT 0.0
 .TP
 .B \-I
 Alternate method to specify inverse projection. Redundant when used with
-\fI\%invproj\fP\&.
+invproj\&.
 .UNINDENT
 .INDENT 0.0
 .TP
 .B \-o
-Selects binary output only (see \fI\%\-b\fP).
+Selects binary output only (see \fB\-b\fP).
 .UNINDENT
 .INDENT 0.0
 .TP
@@ -91,7 +92,7 @@ applicable to ASCII input only. (# is the default value).
 .B \-e <string>
 Where \fIstring\fP is an arbitrary string to be output if an error is detected during
 data transformations. The default value is a three character string: \fB*\et*\fP\&.
-Note that if the \fI\%\-b\fP, \fI\%\-i\fP or \fI\%\-o\fP options are employed, an error
+Note that if the \fB\-b\fP, \fB\-i\fP or \fB\-o\fP options are employed, an error
 is returned as HUGE_VAL value for both return values.
 .UNINDENT
 .INDENT 0.0
@@ -189,7 +190,7 @@ the program to be printed prior to input data.
 .TP
 .B \-V
 This option causes an expanded annotated listing of the characteristics of
-the projected point. \fI\%\-v\fP is implied with this option.
+the projected point. \fB\-v\fP is implied with this option.
 .UNINDENT
 .sp
 The \fI+opt\fP run\-line arguments are associated with cartographic parameters.
@@ -197,11 +198,11 @@ Additional projection control parameters may be contained in two auxiliary
 control files: the first is optionally referenced with the
 \fI+init=file:id\fP and the second is always processed after the name of the
 projection has been established from either the run\-line or the contents of
-+init file. The environment parameter \fI\%PROJ_DATA\fP establishes the
++init file. The environment parameter \fBPROJ_DATA\fP \%<#\:envvar-PROJ_DATA> establishes the
 default directory for a file reference without an absolute path. This is
 also used for supporting files like datum shift files.
 .sp
-New in version 9.3.0: \fI{crs}\fP is one of the possibilities accepted by :c:\fBproj_create()\fP, provided it
+Added in version 9.3.0: \fI{crs}\fP is one of the possibilities accepted by :c:\fBproj_create()\fP, provided it
 expresses a projected CRS, like a WKT string, an object code (like \(dqEPSG:32632\(dq)
 a PROJJSON string, etc.
 The projection computed will be those of the map projection implied by
@@ -226,15 +227,13 @@ The following script
 .INDENT 0.0
 .INDENT 3.5
 .sp
-.nf
-.ft C
+.EX
 proj +proj=utm +zone=12 \-r <<EOF
 45d15\(aq33.1\(dq 111.5W
 45d15.551666667N \-111d30
 +45.25919444444 111d30\(aq000w
 EOF
-.ft P
-.fi
+.EE
 .UNINDENT
 .UNINDENT
 .sp
@@ -246,11 +245,9 @@ data will appear as three lines of:
 .INDENT 0.0
 .INDENT 3.5
 .sp
-.nf
-.ft C
+.EX
 460770.43     5011865.86
-.ft P
-.fi
+.EE
 .UNINDENT
 .UNINDENT
 .sp
@@ -258,13 +255,11 @@ This other example
 .INDENT 0.0
 .INDENT 3.5
 .sp
-.nf
-.ft C
+.EX
 proj EPSG:6421 \-V <<EOF
 \-120 35.8
 EOF
-.ft P
-.fi
+.EE
 .UNINDENT
 .UNINDENT
 .sp
@@ -274,8 +269,7 @@ The output will appear as:
 .INDENT 0.0
 .INDENT 3.5
 .sp
-.nf
-.ft C
+.EX
 #Lambert Conformal Conic
 #   Conic, Sph&Ell
 #   lat_1= and lat_2= or lat_0, k_0=
@@ -296,16 +290,15 @@ Angular distortion (w): 0.000
 Meridian/Parallel angle: 90.00000
 Convergence : \-0d35\(aq47.714\(dq [ \-0.59658715 ]
 Max\-min (Tissot axis a\-b) scale error: 1.00004 1.00004
-.ft P
-.fi
+.EE
 .UNINDENT
 .UNINDENT
 .SH OTHER PROGRAMS
 .sp
-The \fI\%proj\fP program is limited to converting between geographic and
+The proj program is limited to converting between geographic and
 projected coordinates within one datum.
 .sp
-The \fI\%cs2cs\fP program operates similarly, but allows translation
+The cs2cs \%<#\:cs2cs> program operates similarly, but allows translation
 between any pair of definable coordinate reference systems, including
 support for datum translation.
 .SH SEE ALSO
@@ -313,14 +306,13 @@ support for datum translation.
 \fBcs2cs(1)\fP, \fBcct(1)\fP, \fBgeod(1)\fP, \fBgie(1)\fP, \fBprojinfo(1)\fP, \fBprojsync(1)\fP
 .SH BUGS
 .sp
-A list of known bugs can be found at \fI\%https://github.com/OSGeo/PROJ/issues\fP
+A list of known bugs can be found at \%<https://\:github\:.com/\:OSGeo/\:PROJ/\:issues>
 where new bug reports can be submitted to.
 .SH HOME PAGE
 .sp
-\fI\%https://proj.org/\fP
-.SH AUTHOR
+\%<https://\:proj\:.org/>
+.SH Author
 Gerald I. Evenden
-.SH COPYRIGHT
+.SH Copyright
 1983-2026, PROJ contributors
-.\" Generated by docutils manpage writer.
-.
+.\" End of generated man page.

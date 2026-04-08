@@ -1,4 +1,5 @@
-.\" Man page generated from reStructuredText.
+.\" Man page generated from reStructuredText
+.\" by the Docutils 0.22.4 manpage writer.
 .
 .
 .nr rst2man-indent-level 0
@@ -27,7 +28,7 @@ level margin: \\n[rst2man-indent\\n[rst2man-indent-level]]
 .\" new: \\n[rst2man-indent\\n[rst2man-indent-level]]
 .in \\n[rst2man-indent\\n[rst2man-indent-level]]u
 ..
-.TH "GEOD" "1" "01 Mar 2026" "9.8" "PROJ"
+.TH "GEOD" "1" "08 Apr 2026" "9.8" "PROJ"
 .SH NAME
 geod \- Geodesic computations
 .SH SYNOPSIS
@@ -40,7 +41,7 @@ geod \- Geodesic computations
 .UNINDENT
 .SH DESCRIPTION
 .sp
-\fI\%geod\fP (direct) and \fI\%invgeod\fP (inverse) perform geodesic
+geod (direct) and invgeod (inverse) perform geodesic
 (Great Circle) computations for determining latitude, longitude and back
 azimuth of a terminus point given a initial point latitude, longitude,
 azimuth and distance (direct) or the forward and back azimuths and distance
@@ -48,15 +49,15 @@ between an initial and terminus point latitudes and longitudes (inverse).
 The results are accurate to round off for |f| < 1/50, where
 f is flattening.
 .sp
-\fI\%invgeod\fP may not be available on all platforms; in this case
-use \fI\%geod \-I\fP instead.
+invgeod may not be available on all platforms; in this case
+use \fBgeod \-I\fP instead.
 .sp
 The following command\-line options can appear in any order:
 .INDENT 0.0
 .TP
 .B \-I
 Specifies that the inverse geodesic computation is to be performed. May be
-used with execution of \fI\%geod\fP as an alternative to \fI\%invgeod\fP execution.
+used with execution of geod as an alternative to invgeod execution.
 .UNINDENT
 .INDENT 0.0
 .TP
@@ -111,7 +112,7 @@ with leading zeroes.
 .TP
 .B \-p
 This option causes the azimuthal values to be output as unsigned DMS
-numbers between 0 and 360 degrees. Also note \fI\%\-f\fP\&.
+numbers between 0 and 360 degrees. Also note \fB\-f\fP\&.
 .UNINDENT
 .sp
 The \fI+opt\fP command\-line options are associated with geodetic
@@ -141,15 +142,15 @@ azimuthal data must be in decimal degrees or DMS format and
 input distance data must be in units consistent with the ellipsoid
 major axis or sphere radius units. The latitude must lie
 in the range [\-90d,90d]. Output geographic coordinates and azimuths will be
-in DMS (if the \fI\%\-f\fP switch is not employed) to 0.001\(dq with trailing,
+in DMS (if the \fB\-f\fP switch is not employed) to 0.001\(dq with trailing,
 zero\-valued minute\-second fields deleted. Output distance
 data will be in the same units as the ellipsoid or sphere
 radius.
 .sp
 The Earth\(aqs ellipsoidal figure may be selected in the same manner
-as program \fI\%proj\fP by using \fI+ellps=\fP, \fI+a=\fP, \fI+es=\fP, etc.
+as program proj \%<#\:proj> by using \fI+ellps=\fP, \fI+a=\fP, \fI+es=\fP, etc.
 .sp
-\fI\%geod\fP may also be used to determine intermediate points along
+geod may also be used to determine intermediate points along
 either a geodesic line between two points or along an arc of
 specified distance from a geographic point. In both cases an
 initial point must be specified with \fI+lat_1=lat\fP and \fI+lon_1=long\fP
@@ -173,13 +174,11 @@ statute miles from Boston, MA, to Portland, OR:
 .INDENT 0.0
 .INDENT 3.5
 .sp
-.nf
-.ft C
+.EX
 geod +ellps=clrk66 \-I +units=us\-mi <<EOF
 42d15\(aqN 71d07\(aqW 45d31\(aqN 123d41\(aqW
 EOF
-.ft P
-.fi
+.EE
 .UNINDENT
 .UNINDENT
 .sp
@@ -187,11 +186,9 @@ which gives the results:
 .INDENT 0.0
 .INDENT 3.5
 .sp
-.nf
-.ft C
+.EX
 \-66d31\(aq50.141\(dq 75d39\(aq13.083\(dq 2587.504
-.ft P
-.fi
+.EE
 .UNINDENT
 .UNINDENT
 .sp
@@ -203,13 +200,11 @@ and determine Portland\(aqs location by azimuth and distance:
 .INDENT 0.0
 .INDENT 3.5
 .sp
-.nf
-.ft C
+.EX
 geod +ellps=clrk66 +units=us\-mi <<EOF
 42d15\(aqN 71d07\(aqW \-66d31\(aq50.141\(dq 2587.504
 EOF
-.ft P
-.fi
+.EE
 .UNINDENT
 .UNINDENT
 .sp
@@ -217,18 +212,16 @@ which gives:
 .INDENT 0.0
 .INDENT 3.5
 .sp
-.nf
-.ft C
+.EX
 45d31\(aq0.003\(dqN 123d40\(aq59.985\(dqW 75d39\(aq13.094\(dq
-.ft P
-.fi
+.EE
 .UNINDENT
 .UNINDENT
 .sp
 i.e., the latitude and longitude of Portland, and the
 back azimuth from Portland to Boston.
 .sp
-\fBNOTE:\fP
+\fBNote:\fP
 .INDENT 0.0
 .INDENT 3.5
 Lack of precision in the distance value compromises the
@@ -238,26 +231,25 @@ precision of the Portland location.
 .SH FURTHER READING
 .INDENT 0.0
 .IP 1. 3
-\fI\%GeographicLib\fP\&.
+GeographicLib \%<https://\:geographiclib\:.sourceforge\:.io>\&.
 .IP 2. 3
-C. F. F. Karney, \fI\%Algorithms for Geodesics\fP, J. Geodesy \fB87\fP(1), 43–55 (2013);
-\fI\%addenda\fP\&.
+C. F. F. Karney, Algorithms for Geodesics \%<https://\:doi\:.org/\:10\:.1007/\:s00190-012-0578-z>, J. Geodesy \fB87\fP(1), 43–55 (2013);
+addenda \%<https://\:geographiclib\:.sourceforge\:.io/\:geod-addenda\:.html>\&.
 .IP 3. 3
-\fI\%A geodesic bibliography\fP\&.
+A geodesic bibliography \%<https://\:geographiclib\:.sourceforge\:.io/\:geodesic-papers/\:biblio\:.html>\&.
 .UNINDENT
 .SH SEE ALSO
 .sp
 \fBproj(1)\fP, \fBcs2cs(1)\fP, \fBcct(1)\fP, \fBgie(1)\fP, \fBprojinfo(1)\fP, \fBprojsync(1)\fP
 .SH BUGS
 .sp
-A list of known bugs can be found at \fI\%https://github.com/OSGeo/PROJ/issues\fP
+A list of known bugs can be found at \%<https://\:github\:.com/\:OSGeo/\:PROJ/\:issues>
 where new bug reports can be submitted to.
 .SH HOME PAGE
 .sp
-\fI\%https://proj.org/\fP
-.SH AUTHOR
+\%<https://\:proj\:.org/>
+.SH Author
 Charles Karney
-.SH COPYRIGHT
+.SH Copyright
 1983-2026, PROJ contributors
-.\" Generated by docutils manpage writer.
-.
+.\" End of generated man page.
