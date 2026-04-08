@@ -2072,9 +2072,8 @@ TEST_F(CApi, proj_create_operations_with_pivot) {
     ASSERT_NE(source_crs, nullptr);
     ObjectKeeper keeper_source_crs(source_crs);
 
-    // ETRS89-FRA [RGF93 v1]
     auto target_crs = proj_create_from_database(
-        m_ctxt, "EPSG", "4171", PJ_CATEGORY_CRS, false, nullptr);
+        m_ctxt, "EPSG", "4171", PJ_CATEGORY_CRS, false, nullptr); // RGF93 v1
     ASSERT_NE(target_crs, nullptr);
     ObjectKeeper keeper_target_crs(target_crs);
 
@@ -2094,9 +2093,10 @@ TEST_F(CApi, proj_create_operations_with_pivot) {
         ASSERT_NE(op, nullptr);
         ObjectKeeper keeper_op(op);
 
-        EXPECT_EQ(proj_get_name(op),
-                  std::string("ED50 to ETRS89 (10) + ETRS89 to ETRS89-FRA "
-                              "[RGF93 v1]"));
+        EXPECT_EQ(
+            proj_get_name(op),
+            std::string(
+                "ED50 to ETRS89 (10) + Inverse of RGF93 v1 to ETRS89 (1)"));
     }
 
     // Disallow pivots
@@ -2115,14 +2115,14 @@ TEST_F(CApi, proj_create_operations_with_pivot) {
         ASSERT_NE(op, nullptr);
         ObjectKeeper keeper_op(op);
 
-        EXPECT_EQ(proj_get_name(op),
-                  std::string("Ballpark geographic offset from ED50 to "
-                              "ETRS89-FRA [RGF93 v1]"));
+        EXPECT_EQ(
+            proj_get_name(op),
+            std::string("Ballpark geographic offset from ED50 to RGF93 v1"));
     }
 
     // Restrict pivot to ETRS89
     {
-        auto ctxt = proj_create_operation_factory_context(m_ctxt, nullptr);
+        auto ctxt = proj_create_operation_factory_context(m_ctxt, "EPSG");
         ASSERT_NE(ctxt, nullptr);
         ContextKeeper keeper_ctxt(ctxt);
 
@@ -2138,9 +2138,10 @@ TEST_F(CApi, proj_create_operations_with_pivot) {
         ASSERT_NE(op, nullptr);
         ObjectKeeper keeper_op(op);
 
-        EXPECT_EQ(proj_get_name(op),
-                  std::string("ED50 to ETRS89 (10) + ETRS89 to ETRS89-FRA "
-                              "[RGF93 v1]"));
+        EXPECT_EQ(
+            proj_get_name(op),
+            std::string(
+                "ED50 to ETRS89 (10) + Inverse of RGF93 v1 to ETRS89 (1)"));
     }
 
     // Restrict pivot to something unrelated
@@ -2163,9 +2164,9 @@ TEST_F(CApi, proj_create_operations_with_pivot) {
         ASSERT_NE(op, nullptr);
         ObjectKeeper keeper_op(op);
 
-        EXPECT_EQ(proj_get_name(op),
-                  std::string("Ballpark geographic offset from ED50 to "
-                              "ETRS89-FRA [RGF93 v1]"));
+        EXPECT_EQ(
+            proj_get_name(op),
+            std::string("Ballpark geographic offset from ED50 to RGF93 v1"));
     }
 }
 
