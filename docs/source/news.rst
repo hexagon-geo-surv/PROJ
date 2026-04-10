@@ -48,7 +48,7 @@ Bug Fixes
   Helps for example for ``EPSG:5705`` (Baltic 1977 height) to ``EPSG:5706`` (Caspian depth)
   by using intermediate operation from Baltic 1977 height to Caspian *height*
 
-* :program:`gie`: various fixes around crs_src/crs_dst support and bootstrap
+* :program:`gie`: various fixes around ``crs_src`` / ``crs_dst`` support and bootstrap
   test/gie/epsg_grid.gie and test/gie/epsg_no_grid.gie(`#4740 <https://github.com/OSGeo/PROJ/issues/4740>`_)
 
 9.8.0
