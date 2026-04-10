@@ -8,6 +8,6 @@
 
 char const pj_release[] = "Rel. " STR(PROJ_VERSION_MAJOR) "." STR(
     PROJ_VERSION_MINOR) "." STR(PROJ_VERSION_PATCH) ", "
-                                                    "April 8th, 2026";
+                                                    "April 10th, 2026";
 
 const char *pj_get_release() { return pj_release; }
