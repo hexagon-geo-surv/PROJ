@@ -217,7 +217,7 @@ Mathematically the 2D Helmert is described as:
 .. math::
     :label: 4param
 
-    \begin{align}
+    \begin{aligned}
         \begin{bmatrix}
             X \\
             Y \\
@@ -235,7 +235,7 @@ Mathematically the 2D Helmert is described as:
             X \\
             Y \\
         \end{bmatrix}^A
-    \end{align}
+    \end{aligned}
 
 
 :eq:`4param` can be extended to a time-varying kinematic version by
@@ -245,7 +245,7 @@ the kinematic 2D Helmert transform:
 .. math::
     :label: 8param
 
-    \begin{align}
+    \begin{aligned}
         \begin{bmatrix}
             X \\
             Y \\
@@ -263,7 +263,7 @@ the kinematic 2D Helmert transform:
             X \\
             Y \\
         \end{bmatrix}^A
-    \end{align}
+    \end{aligned}
 
 All parameters in :eq:`8param` are determined by the use of :eq:`propagation`,
 which applies the rate of change to each individual parameter for a given
@@ -279,9 +279,9 @@ The general form of the 3D Helmert is
     :label: general-helmert
 
 
-    \begin{align}
+    \begin{aligned}
         V^B = T + \left(1 + s \times 10^{-6}\right) \mathbf{R} V^A
-    \end{align}
+    \end{aligned}
 
 Where :math:`T` is a vector consisting of the three translation parameters, :math:`s`
 is the scaling factor and :math:`\mathbf{R}` is a rotation matrix. :math:`V^A` and
@@ -298,29 +298,29 @@ The rotation matrix is composed of three rotation matrices, one for each axis.
 
 .. math::
 
-    \begin{align}
+    \begin{aligned}
         \mathbf{R}_X &= \begin{bmatrix} 1 & 0 & 0\\ 0 & \cos R_x  & -\sin R_x \\ 0 & \sin R_x  & \cos R_x  \end{bmatrix}
-    \end{align}
+    \end{aligned}
 
 .. math::
 
-    \begin{align}
+    \begin{aligned}
         \mathbf{R}_Y &= \begin{bmatrix} \cos R_y & 0 & \sin R_y\\ 0 & 1 & 0\\ -\sin R_y & 0 & \cos R_y \end{bmatrix}
-    \end{align}
+    \end{aligned}
 
 .. math::
 
-    \begin{align}
+    \begin{aligned}
         \mathbf{R}_Z &= \begin{bmatrix} \cos R_z  & -\sin R_z  & 0\\ \sin R_z  & \cos R_z  & 0\\ 0 & 0 & 1 \end{bmatrix}
-    \end{align}
+    \end{aligned}
 
 The three rotation matrices can be combined in one:
 
 .. math::
 
-    \begin{align}
+    \begin{aligned}
         \mathbf{R} = \mathbf{R_Z} \mathbf{R_Y} \mathbf{R_X}
-    \end{align}
+    \end{aligned}
 
 
 For :math:`\mathbf{R}`, this yields:
@@ -342,13 +342,13 @@ Using the small angle approximation the rotation matrix can be simplified to
 .. math::
     :label: rot_approx
 
-    \begin{align} \mathbf{R} =
+    \begin{aligned} \mathbf{R} =
         \begin{bmatrix}
              1  & -R_z  &  R_y \\
              Rz &  1    & -R_x \\
             -Ry &  R_x  &  1   \\
         \end{bmatrix}
-    \end{align}
+    \end{aligned}
 
 Which allow us to express the most common version of the Helmert transform,
 using the approximated rotation matrix:
@@ -357,7 +357,7 @@ using the approximated rotation matrix:
 .. math::
     :label: 7param
 
-    \begin{align}
+    \begin{aligned}
         \begin{bmatrix}
             X \\
             Y \\
@@ -379,7 +379,7 @@ using the approximated rotation matrix:
             Y \\
             Z \\
         \end{bmatrix}^A
-    \end{align}
+    \end{aligned}
 
 If the rotation matrix is transposed, or the sign of the rotation terms negated,
 the rotational part of the transformation is effectively reversed.
@@ -392,7 +392,7 @@ Applying :eq:`propagation` we get the kinematic version of the approximated
 .. math::
     :label: 14param
 
-    \begin{align}
+    \begin{aligned}
         \begin{bmatrix}
             X \\
             Y \\
@@ -414,7 +414,7 @@ Applying :eq:`propagation` we get the kinematic version of the approximated
             Y \\
             Z \\
         \end{bmatrix}^A
-    \end{align}
+    \end{aligned}
 
 
 
@@ -427,7 +427,7 @@ simplifies to:
 .. math::
     :label: 3param
 
-    \begin{align}
+    \begin{aligned}
         \begin{bmatrix}
             X \\
             Y \\
@@ -443,7 +443,7 @@ simplifies to:
             Y \\
             Z \\
         \end{bmatrix}^A
-    \end{align}
+    \end{aligned}
 
 That after application of :eq:`propagation` has the following kinematic
 counterpart:
@@ -451,7 +451,7 @@ counterpart:
 .. math::
     :label: 6param
 
-    \begin{align}
+    \begin{aligned}
         \begin{bmatrix}
             X \\
             Y \\
@@ -467,4 +467,4 @@ counterpart:
             Y \\
             Z \\
         \end{bmatrix}^A
-    \end{align}
+    \end{aligned}

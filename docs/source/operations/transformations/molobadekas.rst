@@ -122,7 +122,7 @@ In the *Coordinate Frame* convention, :math:`R_x = - radians \left( rx \right)`,
 .. math::
     :label: 10param
 
-    \begin{align}
+    \begin{aligned}
         \begin{bmatrix}
             X \\
             Y \\
@@ -144,4 +144,4 @@ In the *Coordinate Frame* convention, :math:`R_x = - radians \left( rx \right)`,
             Y^{input} - P_y\\
             Z^{input} - P_z\\
         \end{bmatrix}
-    \end{align}
+    \end{aligned}

@@ -135,7 +135,7 @@ Mathematical description
 .. math::
     :label: formula
 
-    \begin{align}
+    \begin{aligned}
         \begin{bmatrix}
             X \\
             Y \\
@@ -160,6 +160,6 @@ Mathematical description
             Z \\
             T \\
         \end{bmatrix}^{source}
-    \end{align}
+    \end{aligned}
 
 

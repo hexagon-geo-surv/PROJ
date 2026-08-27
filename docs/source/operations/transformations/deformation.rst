@@ -173,7 +173,7 @@ correction as seen in eq. :eq:`apply_velocity` below.
 .. math::
     :label: apply_velocity
 
-    \begin{align}
+    \begin{aligned}
         \begin{pmatrix}
             X \\
             Y \\
@@ -190,7 +190,7 @@ correction as seen in eq. :eq:`apply_velocity` below.
             V_Y \\
             V_Z \\
         \end{pmatrix}
-    \end{align}
+    \end{aligned}
 
 Corrections are done in cartesian space.
 
@@ -206,7 +206,7 @@ conversion from ENU space to cartesian space is done in the following way:
 .. math::
     :label: enu2xyz
 
-    \begin{align}
+    \begin{aligned}
         \begin{pmatrix}
             X \\
             Y \\
@@ -217,7 +217,7 @@ conversion from ENU space to cartesian space is done in the following way:
             -\sin\phi \sin\lambda N + \sin\lambda E + \cos\phi \sin\lambda U \\
                          \cos\phi N +                 \sin\phi U \\
         \end{pmatrix}
-    \end{align}
+    \end{aligned}
 
 where :math:`\phi` and :math:`\lambda` are the latitude and longitude of the coordinate
 that is searched for in the grid. :math:`(E, N, U)` are the grid values in ENU-space and
