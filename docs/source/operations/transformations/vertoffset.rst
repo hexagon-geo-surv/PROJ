@@ -68,9 +68,7 @@ The :math:`Z_{dest}` destination elevation is obtained from the
 
 .. math::
 
-    \begin{align}
-        Z_{dest} = Z_{src} + \left( dh + slope_{lat} * {\rho}_0 * (\phi - {\phi}_0) + slope_{lon} * {\nu}_0 * (\lambda - {\lambda}_0) * cos(\phi) \right)
-    \end{align}
+    Z_{dest} = Z_{src} + \left( dh + slope_{lat} * {\rho}_0 * (\phi - {\phi}_0) + slope_{lon} * {\nu}_0 * (\lambda - {\lambda}_0) * cos(\phi) \right)
 
 where:
 
@@ -84,6 +82,4 @@ The reverse formula is:
 
 .. math::
 
-    \begin{align}
-        Z_{src} = Z_{dest} - \left( dh + slope_{lat} * {\rho}_0 * (\phi - {\phi}_0) + slope_{lon} * {\nu}_0 * (\lambda - {\lambda}_0) * cos(\phi) \right)
-    \end{align}
+    Z_{src} = Z_{dest} - \left( dh + slope_{lat} * {\rho}_0 * (\phi - {\phi}_0) + slope_{lon} * {\nu}_0 * (\lambda - {\lambda}_0) * cos(\phi) \right)
